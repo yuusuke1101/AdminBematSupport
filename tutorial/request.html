@@ -65,6 +65,28 @@
         }
         .button:hover {
             background-color: #0056b3;
+	}
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        .back-button:active {
+            background-color: #004494;
+        }
 
     </style>
 </head>
@@ -77,7 +99,7 @@
             
             <button type="submit">Kirim</button>
         </form>
-         <a href="index.html" class="button">Kembali</a>
+         <a class="back-button" onclick="history.back()">Kembali</a>
     </div>
 
     <script>
