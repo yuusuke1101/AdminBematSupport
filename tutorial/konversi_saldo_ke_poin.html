@@ -6,9 +6,8 @@
     <title>Tutorial Konversi Saldo Bonus ke Poin</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
             color: #333;
             display: flex;
             justify-content: center;
@@ -17,44 +16,36 @@
             margin: 0;
         }
         .container {
-            max-width: 600px;
-            padding: 40px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            max-width: 500px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         h1 {
-            text-align: center;
-            color: #555;
+            color: #007BFF;
+            margin-bottom: 20px;
         }
         ol {
-            margin-left: 20px;
+            text-align: left;
+            padding-left: 20px;
+            color: #555;
         }
         li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
-        .btn-back {
+        strong {
+            color: #007BFF;
+        }
+        .back-button {
             display: inline-block;
-            background-color: #4CAF50;
-            color: white;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
             margin-top: 20px;
-        }
-        .btn-back:hover {
-            background-color: #45a049;
-        }
-	    .back-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 20px;
             font-size: 16px;
-            font-weight: bold;
             color: #fff;
-            background-color: #007BFF;
+            background-color: #28a745;
             border: none;
             border-radius: 5px;
             text-decoration: none;
@@ -63,33 +54,31 @@
             transition: background-color 0.3s ease;
         }
         .back-button:hover {
-            background-color: #0056b3;
+            background-color: #218838;
         }
         .back-button:active {
-            background-color: #004494;
+            background-color: #1e7e34;
         }
-
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Tutorial Konversi Saldo Bonus ke Poin</h1>
+        <h1>Konversi Saldo ke Poin</h1>
         <ol>
-            <li><strong>PASTIKAN SALDO BONUS ANDA CUKUP</strong><br>
-                Pastikan jumlah saldo bonus yang Anda miliki mencukupi untuk dikonversi menjadi poin.</li>
-            <li><strong>KLIK PADA MENU KONVERSI SALDO KE POIN</strong><br>
-                Buka aplikasi atau situs web yang Anda gunakan, lalu cari dan klik menu yang bertuliskan "Konversi Saldo ke Poin".</li>
-            <li><strong>Klik Lagi Konversi saldo ke poin</strong><br>
-                Setelah masuk ke menu tersebut, klik lagi opsi "Konversi saldo ke poin" untuk melanjutkan proses.</li>
-            <li><strong>Masukkan Berapa Saldo yang Akan Dikonversi ke Poin</strong><br>
-                Masukkan jumlah saldo bonus yang ingin Anda konversikan. Contoh: Rp. 2000 akan menjadi 20 poin. Pastikan Anda memasukkan jumlah yang sesuai dengan ketentuan yang berlaku.</li>
-            <li><strong>Masukkan PIN Anda</strong><br>
-                Untuk keamanan, masukkan PIN Anda untuk mengonfirmasi proses konversi.</li>
-            <li><strong>Selamat! Bonus Anda Telah Dikonversikan Menjadi Poin</strong><br>
-                Proses selesai. Selamat, saldo bonus Anda telah berhasil dikonversikan menjadi poin dan siap digunakan.</li>
+            <li><strong>Pastikan Saldo Bonus Anda Cukup</strong><br>
+                Periksa apakah saldo bonus Anda mencukupi untuk konversi.</li>
+            <li><strong>Buka Menu Konversi</strong><br>
+                Cari dan klik menu "Konversi Saldo ke Poin" di aplikasi atau situs web.</li>
+            <li><strong>Pilih Konversi Saldo</strong><br>
+                Klik opsi "Konversi saldo ke poin" untuk melanjutkan.</li>
+            <li><strong>Masukkan Jumlah Saldo</strong><br>
+                Tentukan berapa saldo bonus yang ingin dikonversi, misalnya Rp. 2000 menjadi 20 poin.</li>
+            <li><strong>Masukkan PIN</strong><br>
+                Masukkan PIN Anda untuk konfirmasi keamanan.</li>
+            <li><strong>Konversi Berhasil</strong><br>
+                Selamat, saldo bonus Anda telah menjadi poin yang siap digunakan.</li>
         </ol>
-       <a class="back-button" onclick="history.back()">Kembali</a>
-
+        <button class="back-button" onclick="history.back()">Kembali</button>
     </div>
 </body>
 </html>
