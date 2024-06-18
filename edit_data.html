@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pengajuan Edit Data Akun Mitra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .container input, .container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #218838;
+        }
+	.button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #FF0000;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulir Pengajuan Edit Data Akun Mitra</h2>
+        <form id="editDataForm" onsubmit="sendToWhatsApp(); return false;">
+            <label for="username">Username Akun:</label>
+            <input type="text" id="username" name="username" placeholder="Contoh: Dadang01" required>
+
+            <label for="namaPemilik">Nama:</label>
+            <input type="text" id="namaPemilik" name="namaPemilik" placeholder=" dadang sudadang" required>
+
+            <label for="noWhatsapp">No.Whatsapp:</label>
+            <input type="tel" id="noWhatsapp" name="noWhatsapp" placeholder="08xxxxx" required>
+
+            <label for="nik">NIK:</label>
+            <input type="tel" id="nik" name="nik" placeholder="NIK pada KTP anda" required>
+
+            <label for="namaBank">Nama Bank untuk Withdraw:</label>
+            <select id="namaBank" name="namaBank" onchange="checkBankSelection()" required>
+                <option value="">Pilih Nama Bank</option>
+                <option value="BRI">BRI</option>
+                <option value="MANDIRI">Mandiri</option>
+                <option value="BCA">BCA</option>
+                <option value="BSI">BSI</option>
+                <option value="LAINNYA">Lainnya</option>
+            </select>
+            <input type="text" id="namaBankLainnya" name="namaBankLainnya" placeholder="Masukkan Nama Bank" style="display: none;">
+
+            <label for="noRekening">Nomor Rekening:</label>
+            <input type="number" id="noRekening" name="noRekening" placeholder="1234567890" required>
+
+            <label for="atasNama">Nama Pemilik Rekening:</label>
+            <input type="text" id="atasNama" name="atasNama" placeholder="Dadang sudadang" required>
+
+            <label for="akunPengembalian">Akun Pengembalian - Username:</label>
+            <input type="text" id="akunPengembalian" name="akunPengembalian" placeholder="DADANG03" required>
+
+            <label for="namaPemilikPengembalian">Akun Pengembalian - Nama Pemilik:</label>
+            <input type="text" id="namaPemilikPengembalian" name="namaPemilikPengembalian" placeholder="dadang sudadang" required>
+            
+            <button type="submit">Kirim</button>
+			<a href="index.html" class="button">Kembali ke Halaman Utama</a>
+        </form>
+    </div>
+
+    <script>
+        function checkBankSelection() {
+            var selectedValue = document.getElementById("namaBank").value;
+            var namaBankLainnyaField = document.getElementById("namaBankLainnya");
+
+            if (selectedValue === "LAINNYA") {
+                namaBankLainnyaField.style.display = "block";
+                namaBankLainnyaField.setAttribute("required", true);
+            } else {
+                namaBankLainnyaField.style.display = "none";
+                namaBankLainnyaField.removeAttribute("required");
+            }
+        }
+
+        function confirmSubmit() {
+            return confirm("Apakah Anda yakin akan mengirimkan pengajuan ini?");
+        }
+
+        function sendToWhatsApp() {
+            if (!confirmSubmit()) {
+                return;
+            }
+
+            var username = document.getElementById("username").value;
+            var namaPemilik = document.getElementById("namaPemilik").value;
+            var noWhatsapp = document.getElementById("noWhatsapp").value;
+            var nik = document.getElementById("nik").value;
+            var namaBank = document.getElementById("namaBank").value;
+            var namaBankLainnya = document.getElementById("namaBankLainnya").value;
+            var noRekening = document.getElementById("noRekening").value;
+            var atasNama = document.getElementById("atasNama").value;
+            var akunPengembalian = document.getElementById("akunPengembalian").value;
+            var namaPemilikPengembalian = document.getElementById("namaPemilikPengembalian").value;
+
+            if (namaBank === "LAINNYA") {
+                namaBank = namaBankLainnya;
+            }
+
+            var phoneNumber = "6283166570663"; // Nomor WhatsApp tujuan
+            var message = `*_Pengajuan Edit Data Akun Mitra_* %0A%0A*Username Akun*: ${username} %0A*Nama Pemilik Akun*: ${namaPemilik} %0A*No. Whatsapp*: ${noWhatsapp} %0A*NIK*: ${nik} %0A%0A*Nama Bank*: ${namaBank} %0A*No. Rekening*: ${noRekening} %0A*Atas Nama*: ${atasNama} %0A%0A*Akun Pengembalian - Username*: ${akunPengembalian} %0A*Akun Pengembalian - Nama Pemilik*: ${namaPemilikPengembalian}`;
+            var url =  `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .container p {
+            margin-bottom: 10px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .status-bulatan {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px; /* Menambahkan jarak antara bulatan dan teks */
+            margin-left: 10px; /* Menambahkan jarak antara titik dua dan bulatan */
+            animation: pulse 1.5s infinite;
+        }
+        .online {
+            color: green;
+        }
+        .online .status-bulatan {
+            background-color: green;
+        }
+        .offline, .libur {
+            color: red;
+        }
+        .offline .status-bulatan, .libur .status-bulatan {
+            background-color: red;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Status Admin</h2>
+        <p id="tanggalHari"></p>
+        <p id="waktu"></p>
+        <p class="status">Status Admin:<span class="status-bulatan"></span><span id="statusAdmin"></span></p>
+        <p>Jam Kerja Admin: <span class="bold">Pukul 8.00-20.00 WIB</span></p>
+        <p>Hari Kerja: <span class="bold">Senin - Sabtu</span></p>
+        <a href="index.html" class="button">Kembali</a>
+    </div>
+
+    <script>
+        // Array untuk nama hari dalam Bahasa Indonesia
+        var namaHari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        
+        // Array untuk nama bulan dalam Bahasa Indonesia
+        var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+        // Fungsi untuk mendapatkan tanggal, hari, dan waktu saat ini
+        function updateTime() {
+            var waktuSekarang = new Date();
+            var hariSekarang = namaHari[waktuSekarang.getDay()];
+            var bulanSekarang = namaBulan[waktuSekarang.getMonth()]; // Menampilkan nama bulan
+
+            // Mengonversi tanggal menjadi format yang diinginkan (misalnya, "DD-MM-YYYY")
+            var tanggalFormat = waktuSekarang.getDate() + ' ' + bulanSekarang + ' ' + waktuSekarang.getFullYear();
+
+            // Mendapatkan jam, menit, dan detik saat ini
+            var jam = waktuSekarang.getHours();
+            var menit = waktuSekarang.getMinutes();
+            var detik = waktuSekarang.getSeconds();
+
+            // Format jam, menit, dan detik agar selalu dua digit
+            jam = (jam < 10 ? '0' : '') + jam;
+            menit = (menit < 10 ? '0' : '') + menit;
+            detik = (detik < 10 ? '0' : '') + detik;
+
+            // Menampilkan hari, tanggal, dan jam di dalam elemen dengan id "tanggalHari" dan "waktu"
+            document.getElementById('tanggalHari').innerText = 'Hari ini: ' + hariSekarang + ', ' + tanggalFormat;
+            document.getElementById('waktu').innerText = 'Waktu saat ini: ' + jam + ':' + menit + ':' + detik;
+
+            // Menentukan status admin berdasarkan waktu
+            var status = getAdminStatus(waktuSekarang);
+
+            document.getElementById('statusAdmin').innerText = status;
+
+            // Penyesuaian warna teks dan bulatan berdasarkan status
+            var statusElement = document.getElementById('statusAdmin').parentElement;
+            if (status === 'Online') {
+                statusElement.className = 'status online';
+            } else if (status === 'Offline' || status === 'Libur') {
+                statusElement.className = 'status offline';
+            }
+        }
+
+        // Mendapatkan waktu saat ini dengan zona waktu Jakarta
+        function getCurrentDateTime() {
+            var now = new Date();
+            var options = { timeZone: 'Asia/Jakarta' };
+            return now.toLocaleString('id-ID', options);
+        }
+
+        // Menentukan status admin berdasarkan waktu
+        function getAdminStatus(dateTimeString) {
+            var date = new Date(dateTimeString);
+            var day = date.getDay();
+            var hours = date.getHours();
+
+            if (day === 0 || (day === 6 && hours >= 21) || (day === 1 && hours < 8)) {
+                return 'Libur';
+            } else if (hours >= 8 && hours < 21 && day >= 1 && day <= 6) { // Senin - Jumat, jam 8 pagi - 9 malam
+                return 'Online';
+            } else { // Jam 9 malam - 8 pagi atau Sabtu setelah jam kerja
+                return 'Offline';
+            }
+        }
+
+        // Memperbarui informasi setiap detik
+        setInterval(updateTime, 1000);
+
+        // Memulai pembaruan status
+        updateTime();
+    </script>
+</body>
+</html>

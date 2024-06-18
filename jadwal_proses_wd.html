@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Withdraw Mitra dan Warung Poin Bemat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .status {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .session {
+            font-weight: bold;
+        }
+
+        .session-1 {
+            color: red;
+        }
+
+        .session-2 {
+            color: green;
+        }
+
+        .note {
+            font-style: italic;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        .bank-info {
+            font-style: italic;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Warna status */
+        .in-process {
+            color: green;
+        }
+
+        .not-processed {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jadwal Withdraw Mitra dan Warung Poin Bemat</h1>
+        <div class="info">1. Hari: <span id="currentDay"></span></div>
+        <div class="info">2. Jam: <span id="currentTime"></span></div>
+        <div class="status">3. Status: <span id="withdrawStatus"></span></div>
+        <div class="session">4. Sesi: <span id="currentSession"></span></div>
+        <div class="note">Catatan: Apabila wd siang hari maka bisa diproses di sesi ke-2, dan apabila permintaan wd pada malam hari maka diproses keesokan harinya di sesi ke-1.</div>
+        <div class="bank-info">* Apabila sampai sesi selesai dana belum masuk, harap cek rekening Bank 1 <span style="font-style: italic;"></span>.</div>
+        <a href="index.html">Kembali ke Halaman Utama</a>
+
+    </div>
+
+    <script>
+        // Mendapatkan nama hari berdasarkan angka (0: Minggu, 1: Senin, dst.)
+        var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        var currentDay = new Date().getDay();
+        document.getElementById("currentDay").innerText = days[currentDay];
+
+        // Fungsi untuk mengatur format waktu
+        function updateTime() {
+            var currentDate = new Date();
+            var currentDay = currentDate.getDay();
+            var currentTime = currentDate.toLocaleString("en-US", {timeZone: "Asia/Jakarta", hour: 'numeric', minute:'numeric', second: 'numeric', hour12: false});
+            document.getElementById("currentDay").innerText = days[currentDay];
+            document.getElementById("currentTime").innerText = currentTime;
+            setTimeout(updateTime, 1000); // Mengupdate setiap detik
+        }
+
+        // Panggil fungsi untuk pertama kali
+        updateTime();
+
+        // Inisialisasi status default dan sesi default
+        var status = "Belum Diproses";
+        var session = "";
+
+        // Mendapatkan jam saat ini untuk penentuan status
+        var currentHour = new Date().getHours();
+
+        // Cek status dan sesi berdasarkan waktu
+        if (currentDay >= 1 && currentDay <= 6) { // Hari Senin hingga Sabtu
+            if ((currentHour >= 13 && currentHour < 15) || (currentHour >= 17 && currentHour < 21)) {
+                status = "Sedang Diproses";
+                session = "Sesi Ke-2";
+            } else if ((currentHour >= 15 && currentHour < 17) || (currentHour >= 21 && currentHour < 24) || (currentHour >= 0 && currentHour < 1)) {
+                status = "Belum Dimulai";
+                session = "Sesi Ke-1";
+            } else {
+                status = "Belum Diproses";
+                session = "Sesi Ke-1";
+            }
+        }
+
+        // Tampilkan status dan sesi
+        document.getElementById("withdrawStatus").innerText = status;
+        document.getElementById("currentSession").innerText = session;
+
+        // Beri warna sesuai status
+        if (status === "Sedang Diproses") {
+            document.getElementById("withdrawStatus").classList.add("in-process");
+        } else {
+            document.getElementById("withdrawStatus").classList.add("not-processed");
+        }
+
+        // Beri warna sesuai sesi
+        if (session === "Sesi Ke-1") {
+            document.getElementById("currentSession").classList.add("session-1");
+        } else if (session === "Sesi Ke-2") {
+            document.getElementById("currentSession").classList.add("session-2");
+        }
+    </script>
+</body>
+</html>

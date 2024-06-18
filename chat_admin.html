@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir WhatsApp ke Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .form-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .form-box h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-box label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-box input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-box button:hover {
+            background-color: #218838;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #ff0000;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h2>Pilih Admin</h2>
+            <select id="adminSelection">
+                <option value="">Pilih Admin Yang Anda Butuhkan</option>
+                <option value="BEMAT">Admin Bemat</option>
+                <option value="PPOB">Admin PPOB</option>
+            </select>
+            <h2>Pesan:</h2>
+            <form id="messageForm" onsubmit="sendToWhatsApp(); return false;">
+                <input type="text" id="message" name="message" required>
+                <button type="submit">Kirim</button>
+            </form>
+             <a href="index.html" class="button">Kembali</a>
+        </div>
+    </div>
+
+    <script>
+        function sendToWhatsApp() {
+            var message = document.getElementById("message").value;
+            var admin = document.getElementById("adminSelection").value;
+            var phoneNumber = admin === "BEMAT" ? "6283166570663" : "6282385954211";
+            var url =  `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

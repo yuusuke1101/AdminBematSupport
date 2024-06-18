@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin Mitra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #007bff;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu li {
+            margin-bottom: 20px; /* Increased margin to add more spacing */
+        }
+        .button {
+            display: block;
+            width: 90%;
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        /* Styles for the clock */
+        #clock {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #555;
+            background-color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="clock"></div>
+        <h1 id="greeting">Selamat Datang di Halaman Admin Mitra</h1>
+        <h2 class="header">Menu Admin Mitra</h2>
+        <ul class="menu">
+            <li><a href="edit_data.html" class="button">Edit Data Akun Mitra</a></li>
+            <li><a href="edit_warung.html" class="button">Edit Data Warung</a></li>
+            <li><a href="daftar_warung.html" class="button">Pengajuan Pendaftaran Warung</a></li>
+            <li><a href="ubah_password.html" class="button">Pengajuan Ubah Password Akun</a></li>
+            <li><a href="lupa_pin_password.html" class="button">Kirim Ulang Notifikasi Detail Akun</a></li>
+            <li><a href="kirim_ulang_notifikasi.html" class="button">Lupa Password Akun Mitra</a></li>
+            <li><a href="chat_admin.html" class="button">Chat Admin</a></li>
+            <li><a href="tutorial.html" class="button">Tutorial</a></li>
+            <li><a href="pengajuan_nbh.html" class="button">Pengajuan NBH</a></li>
+            <li><a href="status_admin.html" class="button">Cek Status Admin</a></li>
+            <li><a href="jadwal_proses_wd.html" class="button">Jadwal Proses WD</a></li>
+            <li><a href="claim_pengembalian_modal.html" class="button">Claim Pengembalian Modal (Cashback 100%)</a></li>
+            <li><a href="download.html" class="button">Download Aplikasi Bemat</a></li>
+            <li><a href="https://langitindoniaga.co.id/" class="button" onclick="return confirm('Apakah Anda yakin ingin membuka link login Bemat?')">Link Login Bemat</a></li>
+            <li><a href="pengajuan_nbh_pendaftaran_warung.html" class="button">Pengajuan NBH Pendaftaran Warung</a></li>
+        </ul>
+    </div>
+
+    <script>
+        var greeting = document.getElementById('greeting');
+        var clock = document.getElementById('clock');
+        var intervalID;
+
+        function updateTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            // Add leading zeros if necessary
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            // Format the time
+            var formattedTime = hours + ":" + minutes + ":" + seconds;
+
+            // Update the clock
+            clock.textContent = formattedTime;
+
+            // Determine greeting based on time
+            if (hours >= 0 && hours < 4) {
+                greeting.textContent = "Selamat Malam Mitra Bemat di dashboard menu bantuan admin";
+            } else if (hours >= 4 && hours < 10) {
+                greeting.textContent = "Selamat Pagi Mitra Bemat di dashboard menu bantuan admin";
+            } else if (hours >= 10 && hours < 14) {
+                greeting.textContent = "Selamat Siang Mitra Bemat di dashboard menu bantuan admin";
+            } else if (hours >= 14 && hours < 19) {
+                greeting.textContent = "Selamat Sore Mitra Bemat di dashboard menu bantuan admin";
+            } else {
+                greeting.textContent = "Selamat Malam Mitra Bemat di dashboard menu bantuan admin";
+            }
+        }
+
+        // Update time every second
+        intervalID = setInterval(updateTime, 1000);
+
+        // Call updateTime initially to set the clock and greeting
+        updateTime();
+    </script>
+</body>
+</html>
