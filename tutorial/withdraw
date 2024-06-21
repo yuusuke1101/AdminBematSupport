@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Withdraw Akun Mitra dan Warung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .step {
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .step h2 {
+            color: #3f51b5;
+        }
+        .example {
+            margin-top: 10px;
+            background: #f4f4f4;
+            border-left: 4px solid #3f51b5;
+            padding: 10px 20px;
+        }
+        .note {
+            margin-top: 20px;
+            background: #ffe0b2;
+            border-left: 4px solid #ff9800;
+            padding: 10px 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3f51b5;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tutorial Withdraw Akun Mitra dan Warung</h1>
+
+    <div class="step">
+        <h2>1. Masuk ke akun anda (mitra ataupun warung)</h2>
+        <p>Langkah pertama adalah masuk ke akun Mitra atau Warung Anda menggunakan kredensial yang tepat.</p>
+    </div>
+
+    <div class="step">
+        <h2>2. Pastikan Saldo bonus anda cukup untuk di withdraw</h2>
+        <p>Anda hanya dapat melakukan withdraw menggunakan saldo bonus. Pastikan saldo bonus Anda mencukupi.</p>
+    </div>
+
+    <div class="step">
+        <h2>3. Masuk ke menu Withdraw/penarikan pada halaman utama</h2>
+        <p>Cari dan klik menu Withdraw atau Penarikan pada halaman utama akun Anda.</p>
+    </div>
+
+    <div class="step">
+        <h2>4. Masukkan jumlah withdraw anda</h2>
+        <p>Masukkan jumlah yang ingin Anda withdraw. Minimal withdraw adalah Rp. 20.000 karena ada potongan admin sebesar Rp. 10.000.</p>
+        <div class="example">
+            Contoh: Rp. 120.000 akan dipotong admin Rp. 10.000. Maka yang Anda terima adalah Rp. 110.000.
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>5. Masukkan pin anda</h2>
+        <p>Masukkan PIN sesuai dengan jenis akun Anda. Jika Mitra, masukkan PIN Mitra. Jika Warung, masukkan PIN Warung.</p>
+    </div>
+
+    <div class="step">
+        <h2>6. Klik proses</h2>
+        <p>Klik tombol proses untuk mengajukan withdraw.</p>
+    </div>
+
+    <div class="step">
+        <h2>7. Tunggu hingga pemrosesan di acc oleh admin Withdraw</h2>
+        <p>Tunggu hingga proses withdraw disetujui oleh admin. Periksa juga Data Bank 1 pada akun Anda untuk menghindari pending.</p>
+    </div>
+
+    <div class="note">
+        <h3>Catatan:</h3>
+        <p>Pastikan data bank Anda lengkap dan valid. Proses withdraw dapat memakan waktu paling lambat 24 jam.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="javascript:history.back()" class="btn">Kembali</a>
+    </div>
+
+</body>
+</html>
