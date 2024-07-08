@@ -207,7 +207,7 @@
             }
 
             var phoneNumber = "6283166570663"; // Nomor WhatsApp tujuan
-            var message = `*Pengajuan Pendaftaran Warung Poin Bemat* %0A*ID Sponsor*: ${idSponsor} %0A*Banner/Spanduk*: ${banner} %0A*Nama Pemilik Warung*: ${namaPemilik} %0A*No. Whatsapp*: ${noWhatsapp} %0A*Jenis Warung*: ${jenisWarung} %0A*Alamat*: Provinsi ${provinsi}, Kabupaten ${kabupaten}, Kecamatan ${kecamatan}, Kelurahan/Desa ${kelurahan}, Alamat lengkap: ${alamatLengkap} %0${namaBank} %0A*No. Rekening*: ${noRekening} %0A*Atas Nama*: ${atasNama}`;
+            var message = `*Pengajuan Pendaftaran Warung Poin Bemat* %0A*ID Sponsor*: ${idSponsor} %0A*Banner/Spanduk*: ${banner} %0A*Nama Pemilik Warung*: ${namaPemilik} %0A*No. Whatsapp*: ${noWhatsapp} %0A*Jenis Warung*: ${jenisWarung} %0A%0A*Alamat*: %0A*Provinsi*: ${provinsi} %0A*Kabupaten*: ${kabupaten} %0A*Kecamatan*: ${kecamatan} %0A*Kelurahan/Desa*: ${kelurahan} %0A*Alamat lengkap*: ${alamatLengkap} %0A%0${namaBank} %0A*No. Rekening*: ${noRekening} %0A*Atas Nama*: ${atasNama}`;
             var url = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(url, '_blank');
         }
