@@ -118,6 +118,7 @@
 
 <div class="sidebar" id="sidebar">
     <ul>
+        <li onclick="navigateTo('menu.html')"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
         <li onclick="toggleSubmenu('edit-data')"><i class="fas fa-edit"></i> Edit Data
             <ul class="submenu" id="edit-data">
                 <li onclick="navigateTo('edit_data.html')">Edit data Mitra</li>
@@ -126,7 +127,7 @@
             </ul>
         </li>
         <li onclick="navigateTo('daftar_warung.html')"><i class="fas fa-store"></i> Daftar Warung</li>
-        <li onclick="navigateTo('kirim_ulang_notifikasi.html')"><i class="fas fa-bell"></i> Kirim Ulang Notifikasi</li>
+        <li onclick="navigateTo('lupa_pin_password.html')"><i class="fas fa-bell"></i> Kirim Ulang Notifikasi</li>
         <li onclick="toggleSubmenu('lupa-password')"><i class="fas fa-key"></i> Lupa Password
             <ul class="submenu" id="lupa-password">
                 <li onclick="navigateTo('password-akun-mitra.html')">Password akun Mitra</li>
@@ -166,11 +167,11 @@
         </div>
         <div class="card">
             <h3>Statistik Pengguna</h3>
-            <p>Data jumlah akun total 216227 akun dan warung total 5907 terdaftar.</p>
+            <p>Data jumlah total 200rb+ akun Mitra dan warung total 5907 akun warung terdaftar.</p>
         </div>
         <div class="card">
             <h3>Pemberitahuan</h3>
-            <p>Pemberitahuan terbaru Terkirim di Grup Bemat Nasional.</p>
+            <p>Pemberitahuan terbaru untuk para mitra Bemat.</p>
         </div>
         <div class="card">
             <h3>Tips dan Trik</h3>
@@ -216,7 +217,7 @@
     document.getElementById('toggle-btn').addEventListener('click', function() {
         const sidebar = document.getElementById('sidebar');
         const mainContent = document.getElementById('main-content');
-        if (sidebar.style.left=== '0px') {
+        if (sidebar.style.left === '0px') {
             sidebar.style.left = '-250px';
             mainContent.style.marginLeft = '0';
         } else {
@@ -226,6 +227,8 @@
     });
 
     // Initial sidebar state
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
     sidebar.style.left = '0';
     mainContent.style.marginLeft = '250px';
 </script>
