@@ -1,19 +1,112 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Data Akun Mitra</title>
+    <title>Dashboard Admin Bemat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 120vh;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
             margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
+        .header {
+            background-color: #4b6cb7;
+            background-image: linear-gradient(315deg, #4b6cb7 0%, #182848 74%);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header .greeting {
+            font-size: 18px;
+        }
+        .header .datetime {
+            font-size: 14px;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            position: fixed;
+            height: 100%;
+            padding-top: 20px;
+            left: -250px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .sidebar ul li:hover {
+            background-color: #495057;
+            transform: scale(1.05);
+        }
+        .sidebar ul li i {
+            margin-right: 10px;
+        }
+        .sidebar ul .submenu {
+            display: none;
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .sidebar ul .submenu li {
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .main-content h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #182848;
+            margin-bottom: 20px;
+        }
+        .toggle-btn {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            margin-bottom: 15px;
+            color: #4b6cb7;
+        }
+        .card p {
+            margin: 0;
+            color: #666;
+        }
+		}
         .container {
             background-color: #fff;
             padding: 20px;
@@ -53,7 +146,7 @@
         .container button:hover {
             background-color: #218838;
         }
-	.button {
+		.button {
             display: inline-block;
             padding: 10px 20px;
             margin-top: 20px;
@@ -67,9 +160,61 @@
         }
         .button:hover {
             background-color: #0056b3;
+		}
     </style>
 </head>
 <body>
+
+<div class="header">
+    <div class="toggle-btn" id="toggle-btn"><i class="fas fa-bars"></i></div>
+    <div class="greeting" id="greeting"></div>
+    <div class="datetime" id="datetime"></div>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li onclick="navigateTo('menu.html')"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+        <li onclick="toggleSubmenu('edit-data')"><i class="fas fa-edit"></i> Edit Data
+            <ul class="submenu" id="edit-data">
+                <li onclick="navigateTo('edit_data.html')">Edit data Mitra</li>
+                <li onclick="navigateTo('edit_warung.html')">Edit data Warung</li>
+                <li onclick="navigateTo('ubah_password.html')">Ubah password akun</li>
+            </ul>
+        </li>
+        <li onclick="navigateTo('daftar_warung.html')"><i class="fas fa-store"></i> Daftar Warung</li>
+        <li onclick="navigateTo('lupa_pin_password.html')"><i class="fas fa-bell"></i> Kirim Ulang Notifikasi</li>
+        <li onclick="toggleSubmenu('lupa-password')"><i class="fas fa-key"></i> Lupa Password
+            <ul class="submenu" id="lupa-password">
+                <li onclick="navigateTo('password-akun-mitra.html')">Password akun Mitra</li>
+                <li onclick="navigateTo('password-akun-warung.html')">Password akun Warung</li>
+            </ul>
+        </li>
+        <li onclick="toggleSubmenu('admin')"><i class="fas fa-user-shield"></i> Admin
+            <ul class="submenu" id="admin">
+                <li onclick="navigateTo('https://api.whatsapp.com/send/?phone=6283166570663&text=halo+admin&type=phone_number&app_absent=0')">Chat CS Bemat</li>
+                <li onclick="navigateTo('https://api.whatsapp.com/send/?phone=6282385954211&text=halo+admin+PPOB&type=phone_number&app_absent=0')">Chat CS PPOB</li>
+            </ul>
+        </li>
+        <li onclick="toggleSubmenu('withdraw-cashback')"><i class="fas fa-money-check-alt"></i> Withdraw dan Cashback
+            <ul class="submenu" id="withdraw-cashback">
+                <li onclick="navigateTo('jadwal_proses_wd.html')">Info Withdraw</li>
+                <li onclick="navigateTo('claim_pengembalian_modal.html')">Info Cashback</li>
+            </ul>
+        </li>
+        <li onclick="toggleSubmenu('download')"><i class="fas fa-download"></i> Download
+            <ul class="submenu" id="download">
+                <li onclick="navigateTo('https://play.google.com/store/apps/details?id=com.bemat.langitindoniaga')">Download Playstore</li>
+                <li onclick="navigateTo('https://apk.e-droid.net/apk/app2856054-1xjdma.apk?v=2')">Download Alternate</li>
+            </ul>
+        </li>
+        <li onclick="window.location.href='https://www.langitindoniaga.co.id'"><i class="fas fa-link"></i> Link Bemat</li>
+        <li onclick="navigateTo('status_admin.html')"><i class="fas fa-user-check"></i> Status Admin</li>
+        <li onclick="navigateTo('tutorial.html')"><i class="fas fa-chalkboard-teacher"></i> Tutorial</li>
+    </ul>
+</div>
+
+<div class="main-content" id="main-content">
+    <h1>EDIT DATA MITRA BEMAT</h1>
     <div class="container">
         <h2>Formulir Pengajuan Edit Data Akun Mitra</h2>
         <form id="editDataForm" onsubmit="sendToWhatsApp(); return false;">
@@ -109,12 +254,10 @@
             <input type="text" id="namaPemilikPengembalian" name="namaPemilikPengembalian" placeholder="Pemilik Akun untuk Cashback" required>
             
             <button type="submit">Kirim</button>
-			<a href="index.html" class="button">Kembali ke Halaman Utama</a>
         </form>
     </div>
-
-    <script>
-        function checkBankSelection() {
+<script>
+	function checkBankSelection() {
             var selectedValue = document.getElementById("namaBank").value;
             var namaBankLainnyaField = document.getElementById("namaBankLainnya");
 
@@ -156,6 +299,61 @@
             var url =  `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(url, '_blank');
         }
-    </script>
+    function updateTime() {
+        const now = new Date();
+        const hours = now.getHours();
+        let greeting;
+
+        if (hours < 12) {
+            greeting = "Selamat Pagi";
+        } else if (hours < 18) {
+            greeting = "Selamat Siang";
+        } else if (hours < 21) {
+            greeting = "Selamat Sore";
+        } else {
+            greeting = "Selamat Malam";
+        }
+
+        document.getElementById('greeting').innerText = `${greeting}, Mitra Bemat`;
+
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        document.getElementById('datetime').innerText = now.toLocaleDateString('id-ID', options);
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function toggleSubmenu(id) {
+        const submenu = document.getElementById(id);
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+
+    document.getElementById('toggle-btn').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+        if (sidebar.style.left === '0px') {
+            sidebar.style.left = '-250px';
+            mainContent.style.marginLeft = '0';
+        } else {
+            sidebar.style.left = '0px';
+            mainContent.style.marginLeft = '250px';
+        }
+    });
+
+    // Initial sidebar state
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
+    sidebar.style.left = '0';
+    mainContent.style.marginLeft = '250px';
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
