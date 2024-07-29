@@ -90,10 +90,10 @@
     <div class="container">
         <h1>Jadwal Withdraw Mitra dan Warung Poin Bemat</h1>
 	<div class="info">1. Hari: Senin - Sabtu</div>
-        <div class="info">1. Hari saat ini: <span id="currentDay"></span></div>
-        <div class="info">2. Jam: <span id="currentTime"></span></div>
-        <div class="status">3. Status: <span id="withdrawStatus"></span></div>
-        <div class="session">4. Sesi: <span id="currentSession"></span></div>
+        <div class="info">2. Hari saat ini: <span id="currentDay"></span></div>
+        <div class="info">3. Jam: <span id="currentTime"></span></div>
+        <div class="status">4. Status: <span id="withdrawStatus"></span></div>
+        <div class="session">5. Sesi: <span id="currentSession"></span></div>
         <div class="note">Catatan: Apabila wd siang hari maka bisa diproses di sesi ke-2, dan apabila permintaan wd pada malam hari maka diproses keesokan harinya di sesi ke-1.</div>
         <div class="bank-info">* Apabila sampai sesi selesai dana belum masuk, harap cek rekening Bank 1 <span style="font-style: italic;"></span>.</div>
         <a href="index.html" class="button">Kembali</a>
@@ -130,10 +130,10 @@
         if (currentDay >= 1 && currentDay <= 6) { // Hari Senin hingga Sabtu
             if ((currentHour >= 13 && currentHour < 15) || (currentHour >= 17 && currentHour < 21)) {
                 status = "Sedang Diproses";
-                session = "Sesi Ke-2";
+                session = "Sesi Ke-1";
             } else if ((currentHour >= 15 && currentHour < 17) || (currentHour >= 21 && currentHour < 24) || (currentHour >= 0 && currentHour < 1)) {
                 status = "Belum Dimulai";
-                session = "Sesi Ke-1";
+                session = "Sesi Ke-2";
             } else {
                 status = "Belum Diproses";
                 session = "Sesi Ke-1";
