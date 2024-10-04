@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .container img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .container p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .playstore-btn {
+            background-color: #34a853;
+        }
+        .alt-btn {
+            background-color: #4285f4;
+        }
+        .btn img {
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="app-logo.png" alt="App Logo">
+        <h1>Download Our App</h1>
+        <p>Get the latest version of our app now.</p>
+        <a href="https://play.google.com/store" class="btn playstore-btn">
+            <img src="playstore-logo.png" alt="Play Store"> Download from Play Store
+        </a>
+        <a href="https://example.com/alternative-download" class="btn alt-btn">
+            <img src="download-icon.png" alt="Alternative Link"> Download from Alternate Link
+        </a>
+    </div>
+</body>
+</html>
